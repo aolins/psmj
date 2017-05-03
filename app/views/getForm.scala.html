@@ -1,0 +1,27 @@
+@(form: Form[Applicant], countries: Seq[(String, String)])(implicit messages: play.api.i18n.Messages, request: RequestHeader, csrfConfig: play.filters.csrf.CSRFConfig)
+
+@main("A Web page") {
+
+  <H1>Some Useful Government Service</H1>
+
+  <hr/>
+
+  @helper.form(routes.Application.createReq) {
+
+    @helper.CSRFshim.formField
+
+    @helper.inputText(form("name"), '_showConstraints -> false)
+    @helper.inputRadioGroup(
+                 form("sex")
+                 ,options = Seq("Male"->"Male","Female"->"Female")
+                 ,'_label -> "Sex"
+                 ,'_error -> form("sex").error.map(_.withMessage("select gender"))
+                 ,'_showConstraints -> false)
+    @helper.inputText(form("age"),'_showConstraints -> false)
+    @helper.select(form("country"), countries,'_showConstraints -> false)
+
+    <button type="submit">Apply</button>
+
+  }
+
+}

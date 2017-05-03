@@ -1,0 +1,10 @@
+@(applicant: Applicant)(implicit messages: play.api.i18n.Messages, request: RequestHeader, csrfConfig: play.filters.csrf.CSRFConfig)
+
+@main("A Web page") {
+
+  <H1>Application Complete</H1>
+  <br/>
+  <H2>@applicant.name Thank you for applying to this useful government service.</H2>
+
+
+}
