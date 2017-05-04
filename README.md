@@ -12,6 +12,6 @@ It either works or it does not.
 
 ## Enhancements
 All that could be enhanced is heavily dependent on customer.
-If she wants MongoDB to be parametrised, it will be.
+If she wants MongoDB to be parameterised	, it will be.
 Additional CSS? Ok.
 
