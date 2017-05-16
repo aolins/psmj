@@ -34,8 +34,7 @@ class Application(val messagesApi: MessagesApi)(implicit csrfConfig: CSRFConfig)
           sys.error(s"Received unexpected status ${wsResponse.status} : ${wsResponse.body}")
           countries
         }else {
-          val js = Json.parse(wsResponse.body)
-          val names = (js \\ "name").map(_.as[String]).toList
+          val names = parseCountries(wsResponse.body)
           (null, "Choose Country") :: names.map(x => (x, x))
         }
       }
@@ -45,6 +44,11 @@ class Application(val messagesApi: MessagesApi)(implicit csrfConfig: CSRFConfig)
     }
   }
 
+
+  def parseCountries(body: String): List[String] = {
+    val js = Json.parse(body)
+    (js \\ "name").map(_.as[String]).toList
+  }
 
   def getForm = Action { implicit request => Ok(views.html.getForm(Application.createReqForm, getCountries))}
 
